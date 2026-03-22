@@ -16,12 +16,21 @@ export function VoiceChannelSounds() {
       <CategoryButton.Group>
         <CategoryButton
           icon="blank"
-          action={<Checkbox checked={state.voice.playJoinLeaveSounds} />}
+          action={<Checkbox checked={state.voice.playJoinSound} />}
           onClick={() => {
-            state.voice.playJoinLeaveSounds = !state.voice.playJoinLeaveSounds;
+            state.voice.playJoinSound = !state.voice.playJoinSound;
           }}
         >
-          <Trans>Play Join/Leave Sounds</Trans>
+          <Trans>Play Join Sound</Trans>
+        </CategoryButton>
+        <CategoryButton
+          icon="blank"
+          action={<Checkbox checked={state.voice.playLeaveSound} />}
+          onClick={() => {
+            state.voice.playLeaveSound = !state.voice.playLeaveSound;
+          }}
+        >
+          <Trans>Play Leave Sound</Trans>
         </CategoryButton>
       </CategoryButton.Group>
     </Column>

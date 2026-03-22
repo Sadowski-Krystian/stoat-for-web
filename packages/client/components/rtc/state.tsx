@@ -133,17 +133,17 @@ class Voice {
     room.addListener("connected", () => {
       this.#setState("CONNECTED");
 
-      if (this.#settings.playJoinLeaveSounds) playSound(JoinSoundURL);
+      if (this.#settings.playJoinSound) playSound(JoinSoundURL);
     });
 
     room.addListener("disconnected", () => this.#setState("DISCONNECTED"));
 
     room.addListener("participantConnected", () => {
-      if (this.#settings.playJoinLeaveSounds) playSound(JoinSoundURL);
+      if (this.#settings.playJoinSound) playSound(JoinSoundURL);
     });
 
     room.addListener("participantDisconnected", () => {
-      if (this.#settings.playJoinLeaveSounds) playSound(LeaveSoundURL);
+      if (this.#settings.playLeaveSound) playSound(LeaveSoundURL);
     });
 
     if (!auth) {

@@ -20,7 +20,9 @@ export interface TypeVoice {
   echoCancellation: boolean;
   noiseSupression: NoiseSuppresionState;
   autoGainControl: boolean;
-  playJoinLeaveSounds: boolean;
+  
+  playJoinSound: boolean;
+  playLeaveSound: boolean;
 
   inputVolume: number;
   outputVolume: number;
@@ -56,7 +58,8 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
       echoCancellation: true,
       noiseSupression: "browser",
       autoGainControl: true,
-      playJoinLeaveSounds: true,
+      playJoinSound: true,
+      playLeaveSound: true,
       inputVolume: 1.0,
       outputVolume: 1.0,
       userVolumes: {},
@@ -97,9 +100,12 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
     if (typeof input.autoGainControl === "boolean") {
       data.autoGainControl = input.autoGainControl;
     }
-    
-    if (typeof input.playJoinLeaveSounds === "boolean") {
-      data.playJoinLeaveSounds = input.playJoinLeaveSounds;
+
+    if (typeof input.playJoinSound === "boolean") {
+      data.playJoinSound = input.playJoinSound;
+    }
+    if (typeof input.playLeaveSound === "boolean") {
+      data.playLeaveSound = input.playLeaveSound;
     }
 
     if (typeof input.inputVolume === "number") {
@@ -265,16 +271,27 @@ export class Voice extends AbstractStore<"voice", TypeVoice> {
   }
 
   /**
-   * Set play join leave sounds
+   * Set play join sounds
    */
-  set playJoinLeaveSounds(value: boolean) {
-    this.set("playJoinLeaveSounds", value);
+  set playJoinSound(value: boolean) {
+    this.set("playJoinSound", value);
   }
-
   /**
-   * Get play join leave sounds
+   * Get play join sounds
    */
-  get playJoinLeaveSounds(): boolean {
-    return this.get().playJoinLeaveSounds ?? true;
+  get playJoinSound(): boolean {
+    return this.get().playJoinSound ?? true;
+  }
+  /**
+   * Set play leave sounds
+   */
+  set playLeaveSound(value: boolean) {
+    this.set("playLeaveSound", value);
+  }
+  /**
+   * Get play leave sounds
+   */
+  get playLeaveSound(): boolean {
+    return this.get().playLeaveSound ?? true;
   }
 }
